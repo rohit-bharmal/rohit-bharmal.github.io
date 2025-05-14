@@ -1,6 +1,6 @@
 // src/App.tsx
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   useLocation,
   Routes,
   Route,
