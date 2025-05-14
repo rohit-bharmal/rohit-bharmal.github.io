@@ -43,87 +43,101 @@ const About = () => (
         </motion.div>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <Typography variant="body1" paragraph>
-                Hello! I'm Rohit Bharmal, an Associate Software Engineer at Red
-                Hat based in Pune, India. I'm passionate about open-source
-                development and building innovative solutions.
+                I'm Rohit Bharmal, an Associate Software Engineer at Red Hat
+                with a strong focus on frontend development and user experience.
+                At Red Hat, I've contributed to key projects on the Customer
+                Portal, including the Security Advisory and CVE Database. Using
+                technologies like Vue.js and JavaScript, I've built dynamic,
+                responsive interfaces that help thousands of users navigate
+                complex security information with ease.
               </Typography>
               <Typography variant="body1" paragraph>
-                At Red Hat, I contribute to various projects while focusing on
-                developing scalable applications. I have experience in both
-                frontend and backend development, with a particular interest in
-                Vue.js and Python.
+                My work involves more than just coding — I collaborate closely
+                with designers, product managers, and backend engineers to
+                create seamless, cross-browser-compatible solutions that
+                prioritize performance and accessibility. I'm passionate about
+                building products that not only look good but also solve
+                real-world problems efficiently.
               </Typography>
               <Typography variant="body1" paragraph>
-                My recent work includes developing a heart disease prediction
-                application, creating modern web applications with Vue.js, and
-                contributing to various open-source projects. I'm always eager
-                to learn new technologies and contribute to meaningful projects.
+                Whether it's optimizing UI workflows or implementing robust
+                frontend architectures, I strive to deliver clean, maintainable
+                code and a smooth user experience. I've also been recognized
+                with the Red Hat eXcEed Award for my impact and contributions.
               </Typography>
             </motion.div>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              style={{ width: "100%" }}
             >
-              <Paper
-                elevation={0}
-                sx={{
-                  p: 3,
-                  background: (theme) => theme.palette.background.paper,
-                  border: "1px solid",
-                  borderColor: "rgba(255, 255, 255, 0.1)",
-                  width: "100%",
+              <Typography
+                variant="h6"
+                gutterBottom
+                sx={{ 
+                  color: (theme) => theme.palette.primary.main,
+                  mb: 3
                 }}
               >
-                <Typography
-                  variant="h6"
-                  gutterBottom
-                  sx={{ color: (theme) => theme.palette.primary.main }}
-                >
-                  Technical Skills
-                </Typography>
+                Technical Skills
+              </Typography>
 
-                <Stack spacing={2}>
-                  {Object.entries(skills).map(([category, items]) => (
-                    <Box key={category}>
-                      <Typography
-                        variant="subtitle2"
+              {Object.entries(skills).map(([category, items]) => (
+                <Box 
+                  key={category}
+                  sx={{
+                    mb: 4,
+                    p: 2,
+                    borderLeft: '2px solid',
+                    borderColor: (theme) => theme.palette.primary.main,
+                    '&:hover': {
+                      backgroundColor: 'rgba(100, 255, 218, 0.05)',
+                      transform: 'translateX(10px)',
+                      transition: 'all 0.3s ease-in-out'
+                    }
+                  }}
+                >
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: (theme) => theme.palette.text.primary,
+                      fontWeight: 600,
+                      mb: 2
+                    }}
+                  >
+                    {category}
+                  </Typography>
+                  <Stack direction="row" flexWrap="wrap" gap={1.5}>
+                    {items.map((skill) => (
+                      <Chip
+                        key={skill}
+                        label={skill}
                         sx={{
-                          color: (theme) => theme.palette.text.secondary,
-                          mb: 1,
+                          backgroundColor: 'rgba(100, 255, 218, 0.1)',
+                          color: (theme) => theme.palette.primary.main,
+                          borderRadius: '16px',
+                          fontWeight: 500,
+                          '&:hover': {
+                            backgroundColor: 'rgba(100, 255, 218, 0.2)',
+                            transform: 'translateY(-2px)',
+                            transition: 'all 0.2s ease-in-out'
+                          }
                         }}
-                      >
-                        {category}
-                      </Typography>
-                      <Stack direction="row" flexWrap="wrap" gap={1}>
-                        {items.map((skill) => (
-                          <Chip
-                            key={skill}
-                            label={skill}
-                            size="small"
-                            sx={{
-                              backgroundColor: "rgba(100, 255, 218, 0.1)",
-                              color: (theme) => theme.palette.primary.main,
-                              borderRadius: "4px",
-                            }}
-                          />
-                        ))}
-                      </Stack>
-                    </Box>
-                  ))}
-                </Stack>
-              </Paper>
+                      />
+                    ))}
+                  </Stack>
+                </Box>
+              ))}
             </motion.div>
           </Grid>
         </Grid>
