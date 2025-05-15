@@ -59,6 +59,16 @@ const getDesignTokens = (mode: PaletteMode) => ({
         },
       },
     },
+    MuiGrid: {
+      styleOverrides: {
+        item: {
+          "@media (max-width: 768px)": {
+            paddingLeft: "16px !important",
+            paddingRight: "16px !important",
+          },
+        },
+      },
+    },
     MuiCard: {
       styleOverrides: {
         root: {

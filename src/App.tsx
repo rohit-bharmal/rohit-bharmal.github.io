@@ -1,72 +1,38 @@
 // src/App.tsx
-import {
-  HashRouter as Router,
-  useLocation,
-  Routes,
-  Route,
-} from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 import { CssBaseline, GlobalStyles } from "@mui/material";
-import PageWrapper from "./components/PageWrapper";
-import Home from "./components/Home";
-import About from "./components/About";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
 import { ThemeProviderWrapper } from "./theme/ThemeContext";
+import MainPage from "./components/MainPage";
 
 const globalStyles = {
   "*": {
     margin: 0,
     padding: 0,
     boxSizing: "border-box",
+    scrollBehavior: "smooth",
   },
   "html, body": {
     minHeight: "100vh",
     width: "100%",
+    margin: 0,
+    padding: 0,
+    overflow: "auto",
   },
-};
-
-const AnimatedRoutes = () => {
-  const location = useLocation();
-
-  return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <PageWrapper>
-              <Home />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <PageWrapper>
-              <About />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/projects"
-          element={
-            <PageWrapper>
-              <Projects />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <PageWrapper>
-              <Contact />
-            </PageWrapper>
-          }
-        />
-      </Routes>
-    </AnimatePresence>
-  );
+  "#root": {
+    width: "100%",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  },
+  section: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    scrollMarginTop: "56px", // Account for mobile header
+    padding: "80px 0", // Add vertical padding instead of min-height
+    "& > *": {
+      width: "100%",
+    },
+  },
 };
 
 function App() {
@@ -74,9 +40,7 @@ function App() {
     <ThemeProviderWrapper>
       <CssBaseline />
       <GlobalStyles styles={globalStyles} />
-      <Router>
-        <AnimatedRoutes />
-      </Router>
+      <MainPage />
     </ThemeProviderWrapper>
   );
 }

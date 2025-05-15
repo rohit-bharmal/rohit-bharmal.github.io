@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
-import { Box, Stack, IconButton, Tooltip } from "@mui/material";
+import { Box, Stack, IconButton, Tooltip, useMediaQuery } from "@mui/material";
+import { Theme, useTheme } from "@mui/material/styles";
 import { GitHub, LinkedIn, Email } from "@mui/icons-material";
 
 const pageVariants = {
@@ -36,7 +37,7 @@ const footerVariants = {
 const socialLinks = [
   {
     icon: <GitHub />,
-    href: "https://github.com/rohitbharmal",
+    href: "https://github.com/rohit-bharmal",
     label: "GitHub",
   },
   {
@@ -52,8 +53,23 @@ const socialLinks = [
 ];
 
 const PageWrapper = ({ children }: { children: ReactNode }) => {
+  const theme: Theme = useTheme();
+  const isMobile = useMediaQuery("(max-width:768px)");
+
   return (
-    <Box sx={{ minHeight: "100vh", position: "relative", pb: 10 }}>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        position: "relative",
+        pb: 10,
+        pt: isMobile ? "56px" : 0, // Height of mobile header
+        mt: 0,
+        "& > *:first-of-type": {
+          // Add padding to the first child element (usually the Container)
+          pt: isMobile ? 2 : 4,
+        },
+      }}
+    >
       <motion.div
         initial="initial"
         animate="in"
@@ -83,7 +99,7 @@ const PageWrapper = ({ children }: { children: ReactNode }) => {
         >
           <Box
             sx={{
-              backgroundColor: (theme) =>
+              backgroundColor: (theme: Theme) =>
                 theme.palette.mode === "light"
                   ? "rgba(255, 255, 255, 0.8)"
                   : "rgba(17, 34, 64, 0.8)",
@@ -91,7 +107,7 @@ const PageWrapper = ({ children }: { children: ReactNode }) => {
               borderRadius: 8,
               px: 3,
               py: 1.5,
-              boxShadow: (theme) =>
+              boxShadow: (theme: Theme) =>
                 theme.palette.mode === "light"
                   ? "0 8px 32px rgba(0, 0, 0, 0.1)"
                   : "0 8px 32px rgba(0, 0, 0, 0.3)",

@@ -10,9 +10,8 @@ import {
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { GitHub, LinkedIn, Code } from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import NavLinks from "./NavLinks";
 import profileImg from "../assets/img_8729_720.jpg";
+import { Theme } from "@mui/material/styles";
 
 // Typewriter effect
 const Typewriter = ({
@@ -50,13 +49,12 @@ const Home = () => (
       minHeight: "100vh",
       display: "flex",
       alignItems: "center",
-      background: (theme) => theme.palette.background.default,
-      color: (theme) => theme.palette.text.primary,
+      background: (theme: Theme) => theme.palette.background.default,
+      color: (theme: Theme) => theme.palette.text.primary,
       position: "relative",
       overflow: "hidden",
     }}
   >
-    <NavLinks />
     {/* Background decoration */}
     <Box
       sx={{
@@ -73,9 +71,24 @@ const Home = () => (
       }}
     />
 
-    <Container maxWidth="lg">
+    <Container
+      maxWidth="lg"
+      sx={{
+        px: { xs: 4, sm: 3 }, // 32px (4 * 8px) padding for mobile, 24px for larger screens
+      }}
+    >
       <Box sx={{ position: "relative", zIndex: 1 }}>
-        <Grid container spacing={4} alignItems="center">
+        <Grid
+          container
+          spacing={4}
+          alignItems="center"
+          sx={{
+            "& .MuiGrid-item": {
+              paddingLeft: { xs: "32px", sm: "24px" },
+              paddingRight: { xs: "32px", sm: "24px" },
+            },
+          }}
+        >
           <Grid item xs={12} md={8}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -85,7 +98,7 @@ const Home = () => (
               <Typography
                 variant="body1"
                 sx={{
-                  color: (theme) => theme.palette.primary.main,
+                  color: (theme: Theme) => theme.palette.primary.main,
                   fontFamily: "'Fira Code', monospace",
                   mb: 2,
                 }}
@@ -118,7 +131,7 @@ const Home = () => (
                 variant="h2"
                 sx={{
                   mb: 4,
-                  color: (theme) => theme.palette.text.secondary,
+                  color: (theme: Theme) => theme.palette.text.secondary,
                   fontSize: { xs: "1.5rem", md: "2rem" },
                 }}
               >
@@ -139,7 +152,7 @@ const Home = () => (
                 sx={{
                   maxWidth: "600px",
                   mb: 4,
-                  color: (theme) => theme.palette.text.secondary,
+                  color: (theme: Theme) => theme.palette.text.secondary,
                 }}
               >
                 I'm a software engineer who builds scalable, high-impact
@@ -157,8 +170,10 @@ const Home = () => (
             >
               <Stack direction="row" spacing={3} sx={{ mb: 4 }}>
                 <Button
-                  component={Link}
-                  to="/projects"
+                  onClick={() => {
+                    const element = document.getElementById("projects");
+                    element?.scrollIntoView({ behavior: "smooth" });
+                  }}
                   variant="contained"
                   color="primary"
                   size="large"
@@ -170,10 +185,11 @@ const Home = () => (
                   variant="outlined"
                   size="large"
                   sx={{
-                    borderColor: (theme) => theme.palette.primary.main,
-                    color: (theme) => theme.palette.primary.main,
+                    borderColor: (theme: Theme) => theme.palette.primary.main,
+                    color: (theme: Theme) => theme.palette.primary.main,
                     "&:hover": {
-                      borderColor: (theme) => theme.palette.primary.light,
+                      borderColor: (theme: Theme) =>
+                        theme.palette.primary.light,
                       backgroundColor: "rgba(100, 255, 218, 0.1)",
                     },
                   }}
@@ -192,13 +208,13 @@ const Home = () => (
             >
               <Stack direction="row" spacing={2}>
                 <IconButton
-                  href="https://github.com/rohitbharmal"
+                  href="https://github.com/rohit-bharmal"
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
-                    color: (theme) => theme.palette.text.secondary,
+                    color: (theme: Theme) => theme.palette.text.secondary,
                     "&:hover": {
-                      color: (theme) => theme.palette.primary.main,
+                      color: (theme: Theme) => theme.palette.primary.main,
                     },
                   }}
                 >
@@ -209,9 +225,9 @@ const Home = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
-                    color: (theme) => theme.palette.text.secondary,
+                    color: (theme: Theme) => theme.palette.text.secondary,
                     "&:hover": {
-                      color: (theme) => theme.palette.primary.main,
+                      color: (theme: Theme) => theme.palette.primary.main,
                     },
                   }}
                 >
@@ -237,7 +253,7 @@ const Home = () => (
                   borderRadius: "50%",
                   objectFit: "cover",
                   border: "3px solid",
-                  borderColor: (theme) => theme.palette.primary.main,
+                  borderColor: (theme: Theme) => theme.palette.primary.main,
                   boxShadow: "0 0 20px rgba(100, 255, 218, 0.3)",
                   mx: "auto",
                   display: "block",

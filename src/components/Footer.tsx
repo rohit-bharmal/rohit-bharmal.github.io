@@ -15,7 +15,7 @@ const Footer = () => {
         >
           <IconButton
             component="a"
-            href="https://github.com/rohitbharmal"
+            href="https://github.com/rohit-bharmal"
             target="_blank"
             rel="noopener noreferrer"
             color="inherit"
