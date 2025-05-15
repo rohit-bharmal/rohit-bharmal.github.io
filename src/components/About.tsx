@@ -4,11 +4,11 @@ import { Theme } from "@mui/material/styles";
 import { motion } from "framer-motion";
 
 const skills = {
-  Languages: ["Python", "TypeScript", "JavaScript", "Vue.js"],
-  Frontend: ["Vue.js", "React", "Material-UI", "HTML/CSS"],
-  Backend: ["Python", "Node.js", "Express"],
-  "Cloud & DevOps": ["Git", "CI/CD", "Docker"],
-  "Machine Learning": ["scikit-learn", "TensorFlow", "Data Analysis"],
+  Languages: ["JavaScript", "TypeScript", "Python", "HTML", "CSS"],
+  Frameworks: ["Vue.js", "Nuxt.js", "React", "Material-UI"],
+  Backend: ["Node.js", "Express", "Python"],
+  DevOps: ["Git", "CI/CD", "Docker"],
+  AI_and_ML: ["MCP", "Ollama", "Data Analysis"],
 };
 
 const About = () => (

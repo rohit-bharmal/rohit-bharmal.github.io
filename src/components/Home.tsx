@@ -103,7 +103,7 @@ const Home = () => (
                   mb: 2,
                 }}
               >
-                Hi, my name is
+                Hi, I'm
               </Typography>
             </motion.div>
 
