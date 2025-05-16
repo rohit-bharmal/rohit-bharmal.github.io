@@ -18,6 +18,8 @@ interface Project {
   description: string;
   tags: string[];
   github: string;
+  live?: string;
+  image?: string;
 }
 
 const projects: Project[] = [
@@ -36,11 +38,13 @@ const projects: Project[] = [
     github: "https://github.com/rohit-bharmal/nl2sql",
   },
   {
-    title: "Portfolio",
+    title: "Portfolio Website",
     description:
-      "Personal portfolio website showcasing projects and professional experience with modern design.",
-    tags: ["JavaScript", "React", "Portfolio", "Frontend"],
-    github: "https://github.com/rohit-bharmal/rohit-portfolio",
+      "My personal portfolio website built with React, TypeScript, and Material-UI.",
+    tags: ["React", "TypeScript", "Material-UI", "Vite"],
+    github: "https://github.com/rohit-bharmal/rohit-bharmal.github.io",
+    live: "https://rohit-bharmal.github.io",
+    image: "/portfolio.png",
   },
   {
     title: "Weather App",
