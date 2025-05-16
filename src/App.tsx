@@ -28,7 +28,7 @@ const globalStyles = {
     display: "flex",
     alignItems: "center",
     scrollMarginTop: "56px", // Account for mobile header
-    padding: "80px 0", // Add vertical padding instead of min-height
+    padding: "0 0 80px", // Remove top padding, keep bottom padding
     "& > *": {
       width: "100%",
     },

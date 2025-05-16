@@ -36,6 +36,13 @@ const projects: Project[] = [
     github: "https://github.com/rohit-bharmal/nl2sql",
   },
   {
+    title: "Portfolio",
+    description:
+      "Personal portfolio website showcasing projects and professional experience with modern design.",
+    tags: ["JavaScript", "React", "Portfolio", "Frontend"],
+    github: "https://github.com/rohit-bharmal/rohit-portfolio",
+  },
+  {
     title: "Weather App",
     description:
       "Real-time weather application providing detailed weather information and forecasts with a modern, responsive interface.",
@@ -76,13 +83,6 @@ const projects: Project[] = [
       "Web components library based on PatternFly design system, creating reusable custom elements.",
     tags: ["TypeScript", "Web Components", "PatternFly", "UI"],
     github: "https://github.com/rohit-bharmal/patternfly-elements",
-  },
-  {
-    title: "Portfolio",
-    description:
-      "Personal portfolio website showcasing projects and professional experience with modern design.",
-    tags: ["JavaScript", "React", "Portfolio", "Frontend"],
-    github: "https://github.com/rohit-bharmal/portfolio",
   },
   {
     title: "Heart Disease Predictor",
