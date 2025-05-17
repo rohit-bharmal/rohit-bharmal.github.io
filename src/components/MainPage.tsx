@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import NavLinks from "./NavLinks";
 import Home from "./Home";
 import About from "./About";
+import Experience from "./Experience";
 import Projects from "./Projects";
 import Contact from "./Contact";
 
@@ -46,6 +47,11 @@ const MainPage = () => {
       {/* About Section */}
       <section id="about" style={{ width: "100%" }}>
         <About />
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" style={{ width: "100%" }}>
+        <Experience />
       </section>
 
       {/* Projects Section */}

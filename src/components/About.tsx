@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 const skills = {
   Languages: ["JavaScript", "TypeScript", "Python", "HTML", "CSS"],
   Frameworks: ["Vue.js", "Nuxt.js", "React", "Material-UI"],
-  Backend: ["Node.js", "Express", "Python"],
-  DevOps: ["Git", "CI/CD", "Docker"],
+  Backend: ["Express", "Python"],
+  DevOps: ["Git", "CI/CD"],
   AI_and_ML: ["MCP", "Ollama", "Data Analysis"],
 };
 
