@@ -15,8 +15,9 @@ const About = () => (
   <Container>
     <Box
       sx={{
-        pb: 6,
-        px: { xs: 2, sm: 3 }, // Add horizontal padding
+        pt: { xs: 4, md: 6 },
+        pb: 4,
+        px: { xs: 2, sm: 3 },
       }}
     >
       <motion.div
@@ -30,7 +31,7 @@ const About = () => (
           sx={{
             color: (theme: Theme) => theme.palette.primary.main,
             fontWeight: 700,
-            mb: 4,
+            mb: 3,
           }}
         >
           About Me
@@ -57,21 +58,13 @@ const About = () => (
               including the Security Advisory and CVE Database. Using
               technologies like Vue.js and JavaScript, I've built dynamic,
               responsive interfaces that help thousands of users navigate
-              complex security information with ease.
+              complex security data with ease.
             </Typography>
             <Typography variant="body1" paragraph>
-              My work involves more than just coding — I collaborate closely
-              with designers, product managers, and backend engineers to create
-              seamless, cross-browser-compatible solutions that prioritize
-              performance and accessibility. I'm passionate about building
-              products that not only look good but also solve real-world
-              problems efficiently.
-            </Typography>
-            <Typography variant="body1" paragraph>
-              Whether it's optimizing UI workflows or implementing robust
-              frontend architectures, I strive to deliver clean, maintainable
-              code and a smooth user experience. I've also been recognized with
-              the Red Hat eXcEed Award for my impact and contributions.
+              As a dedicated full-stack developer, I specialize in creating
+              scalable web applications and innovative solutions. My passion
+              lies in transforming complex problems into intuitive, user-friendly
+              experiences through clean code and thoughtful design.
             </Typography>
           </motion.div>
         </Grid>
@@ -88,57 +81,85 @@ const About = () => (
               sx={{
                 color: (theme: Theme) => theme.palette.primary.main,
                 mb: 3,
+                fontWeight: 700,
               }}
             >
               Technical Skills
             </Typography>
 
-            {Object.entries(skills).map(([category, items]) => (
-              <Box
-                key={category}
-                sx={{
-                  mb: 4,
-                  p: 2,
-                  borderLeft: "2px solid",
-                  borderColor: (theme: Theme) => theme.palette.primary.main,
-                  "&:hover": {
-                    backgroundColor: "rgba(100, 255, 218, 0.05)",
-                    transform: "translateX(10px)",
-                    transition: "all 0.3s ease-in-out",
-                  },
-                }}
-              >
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    color: (theme: Theme) => theme.palette.text.primary,
-                    fontWeight: 600,
-                    mb: 2,
-                  }}
+            {/* Simple Clean Skills Layout */}
+            <Stack spacing={3}>
+              {Object.entries(skills).map(([category, items], categoryIndex) => (
+                <motion.div
+                  key={category}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
                 >
-                  {category}
-                </Typography>
-                <Stack direction="row" flexWrap="wrap" gap={1.5}>
-                  {items.map((skill) => (
-                    <Chip
-                      key={skill}
-                      label={skill}
+                  <Box>
+                    <Typography
+                      variant="subtitle2"
                       sx={{
-                        backgroundColor: "rgba(100, 255, 218, 0.1)",
                         color: (theme: Theme) => theme.palette.primary.main,
-                        borderRadius: "16px",
-                        fontWeight: 500,
-                        "&:hover": {
-                          backgroundColor: "rgba(100, 255, 218, 0.2)",
-                          transform: "translateY(-2px)",
-                          transition: "all 0.2s ease-in-out",
-                        },
+                        fontWeight: 600,
+                        mb: 1,
+                        fontSize: "0.9rem",
                       }}
-                    />
-                  ))}
-                </Stack>
-              </Box>
-            ))}
+                    >
+                      {category.replace("_", " & ")}
+                    </Typography>
+                    
+                    <Stack direction="row" flexWrap="wrap" gap={1}>
+                      {items.map((skill, skillIndex) => (
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: categoryIndex * 0.1 + skillIndex * 0.03,
+                          }}
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          <Chip
+                            label={skill}
+                            size="small"
+                            sx={{
+                              backgroundColor: (theme: Theme) =>
+                                theme.palette.mode === "light"
+                                  ? "#f8fafc"
+                                  : "rgba(30, 41, 59, 0.8)",
+                              color: (theme: Theme) => theme.palette.text.primary,
+                              border: (theme: Theme) =>
+                                `1px solid ${
+                                  theme.palette.mode === "light"
+                                    ? "#e2e8f0"
+                                    : "rgba(71, 85, 105, 0.4)"
+                                }`,
+                              borderRadius: "6px",
+                              fontSize: "0.75rem",
+                              fontWeight: 500,
+                              height: "28px",
+                              transition: "all 0.2s ease",
+                              "&:hover": {
+                                backgroundColor: (theme: Theme) => theme.palette.primary.main,
+                                color: "#ffffff",
+                                borderColor: (theme: Theme) => theme.palette.primary.main,
+                                transform: "translateY(-1px)",
+                                boxShadow: (theme: Theme) =>
+                                  theme.palette.mode === "light"
+                                    ? "0 4px 8px rgba(30, 64, 175, 0.25)"
+                                    : "0 4px 8px rgba(59, 130, 246, 0.25)",
+                              },
+                            }}
+                          />
+                        </motion.div>
+                      ))}
+                    </Stack>
+                  </Box>
+                </motion.div>
+              ))}
+            </Stack>
           </motion.div>
         </Grid>
       </Grid>

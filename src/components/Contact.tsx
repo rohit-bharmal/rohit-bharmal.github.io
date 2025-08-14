@@ -58,7 +58,7 @@ const Contact = () => {
 
   return (
     <Container maxWidth="md">
-      <Box sx={{ pt: { xs: 12, md: 16 }, pb: 6 }}>
+      <Box sx={{ pt: { xs: 2, md: 3 }, pb: 6 }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ const Contact = () => {
             sx={{
               color: (theme: Theme) => theme.palette.primary.main,
               fontWeight: 700,
-              mb: 4,
+              mb: 3,
               textAlign: "center",
             }}
           >
@@ -89,7 +89,7 @@ const Contact = () => {
               textAlign: "center",
               maxWidth: "600px",
               mx: "auto",
-              mb: 6,
+              mb: 4,
               color: (theme: Theme) => theme.palette.text.secondary,
             }}
           >

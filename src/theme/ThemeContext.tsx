@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useMemo } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { PaletteMode } from "@mui/material";
-import { createAppTheme } from "./theme";
+import { createSuperiorTheme } from "./theme-new";
 
 interface ThemeContextType {
   mode: PaletteMode;
@@ -30,7 +30,7 @@ export const ThemeProviderWrapper: React.FC<{ children: React.ReactNode }> = ({
     [mode]
   );
 
-  const theme = useMemo(() => createAppTheme(mode), [mode]);
+  const theme = useMemo(() => createSuperiorTheme(mode), [mode]);
 
   return (
     <ThemeContext.Provider value={colorMode}>

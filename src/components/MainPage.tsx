@@ -2,7 +2,7 @@ import { Box, Fab, Zoom } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 import { KeyboardArrowUp } from "@mui/icons-material";
 import { useState, useEffect } from "react";
-import NavLinks from "./NavLinks";
+import CompactNavbar from "./CompactNavbar";
 import Home from "./Home";
 import About from "./About";
 import Experience from "./Experience";
@@ -37,7 +37,7 @@ const MainPage = () => {
         color: (theme: Theme) => theme.palette.text.primary,
       }}
     >
-      <NavLinks />
+      <CompactNavbar />
 
       {/* Home Section */}
       <section id="home" style={{ width: "100%" }}>

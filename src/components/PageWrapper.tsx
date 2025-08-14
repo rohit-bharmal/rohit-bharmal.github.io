@@ -61,12 +61,12 @@ const PageWrapper = ({ children }: { children: ReactNode }) => {
       sx={{
         minHeight: "100vh",
         position: "relative",
-        pb: 10,
+        pb: 6,
         pt: isMobile ? "56px" : 0, // Height of mobile header
         mt: 0,
         "& > *:first-of-type": {
           // Add padding to the first child element (usually the Container)
-          pt: isMobile ? 2 : 4,
+          pt: isMobile ? 1 : 2,
         },
       }}
     >
