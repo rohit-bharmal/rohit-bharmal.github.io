@@ -7,7 +7,6 @@ import {
   IconButton,
   Grid,
   useTheme,
-  Chip,
 } from "@mui/material";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
@@ -17,7 +16,6 @@ import {
   Code,
   Download,
   Email,
-  LocationOn,
   Work,
   School,
   EmojiEvents,

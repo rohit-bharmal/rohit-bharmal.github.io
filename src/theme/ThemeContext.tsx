@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useMemo } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { PaletteMode } from "@mui/material";
-import { createSuperiorTheme } from "./theme-new";
+import { createSuperiorTheme } from "./theme";
 
 interface ThemeContextType {
   mode: PaletteMode;

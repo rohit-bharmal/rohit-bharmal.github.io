@@ -24,7 +24,7 @@ import {
 import { useState, useEffect, useRef } from "react";
 
 import { getFeaturedProjects, ProcessedProject } from "../lib/github";
-import LoadingSpinner from "./ui/LoadingSpinner";
+
 import VideoBackground from "./ui/VideoBackground";
 
 // Utility function to format date
@@ -412,7 +412,28 @@ const Projects = () => {
           </motion.div>
 
           {loading && (
-            <LoadingSpinner message="Fetching latest projects from GitHub..." />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minHeight: "200px",
+                flexDirection: "column",
+                gap: 2,
+              }}
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              >
+                <Code
+                  sx={{ fontSize: "3rem", color: theme.palette.primary.main }}
+                />
+              </motion.div>
+              <Typography variant="body1" color="text.secondary">
+                Fetching latest projects from GitHub...
+              </Typography>
+            </Box>
           )}
 
           {error && (
