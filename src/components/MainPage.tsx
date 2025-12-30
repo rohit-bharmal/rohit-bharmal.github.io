@@ -2,7 +2,8 @@ import { Box, Fab, Zoom } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 import { KeyboardArrowUp } from "@mui/icons-material";
 import { useState, useEffect } from "react";
-import CompactNavbar from "./CompactNavbar";
+import { FloatingNav } from "./ui/FloatingNav";
+import { BackgroundBeams } from "./ui/BackgroundBeams";
 import Home from "./Home";
 import About from "./About";
 import Experience from "./Experience";
@@ -35,32 +36,35 @@ const MainPage = () => {
         width: "100%",
         background: (theme: Theme) => theme.palette.background.default,
         color: (theme: Theme) => theme.palette.text.primary,
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <CompactNavbar />
+      <BackgroundBeams />
+      <FloatingNav />
 
       {/* Home Section */}
-      <section id="home" style={{ width: "100%" }}>
+      <section id="home" style={{ width: "100%", position: "relative", zIndex: 1 }}>
         <Home />
       </section>
 
       {/* About Section */}
-      <section id="about" style={{ width: "100%" }}>
+      <section id="about" style={{ width: "100%", position: "relative", zIndex: 1 }}>
         <About />
       </section>
 
       {/* Experience Section */}
-      <section id="experience" style={{ width: "100%" }}>
+      <section id="experience" style={{ width: "100%", position: "relative", zIndex: 1 }}>
         <Experience />
       </section>
 
       {/* Projects Section */}
-      <section id="projects" style={{ width: "100%" }}>
+      <section id="projects" style={{ width: "100%", position: "relative", zIndex: 1 }}>
         <Projects />
       </section>
 
       {/* Contact Section */}
-      <section id="contact" style={{ width: "100%" }}>
+      <section id="contact" style={{ width: "100%", position: "relative", zIndex: 1 }}>
         <Contact />
       </section>
 

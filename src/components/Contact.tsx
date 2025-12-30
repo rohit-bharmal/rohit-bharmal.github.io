@@ -8,11 +8,11 @@ import {
   Alert,
   Paper,
   IconButton,
+  Grid,
 } from "@mui/material";
-import { Theme } from "@mui/material/styles";
-import { motion } from "framer-motion";
+import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
-import { GitHub, LinkedIn, Email, Send } from "@mui/icons-material";
+import { GitHub, LinkedIn, Email, Send, LocationOn } from "@mui/icons-material";
 
 interface FormData {
   name: string;
@@ -27,6 +27,7 @@ const initialFormData: FormData = {
 };
 
 const Contact = () => {
+  const theme = useTheme();
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,211 +58,207 @@ const Contact = () => {
   };
 
   return (
-    <Container maxWidth="md">
-      <Box sx={{ pt: { xs: 2, md: 3 }, pb: 6 }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+    <Box
+      component="section"
+      id="contact"
+      sx={{
+        py: { xs: 8, md: 12 },
+      }}
+    >
+      <Container maxWidth="lg">
+        <Typography
+          variant="h2"
+          sx={{
+            textAlign: "center",
+            mb: 2,
+            color: theme.palette.primary.main,
+            fontWeight: 700,
+          }}
         >
-          <Typography
-            variant="h4"
-            gutterBottom
-            sx={{
-              color: (theme: Theme) => theme.palette.primary.main,
-              fontWeight: 700,
-              mb: 3,
-              textAlign: "center",
-            }}
-          >
-            Get In Touch
-          </Typography>
-        </motion.div>
+          Get In Touch
+        </Typography>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+        <Typography
+          variant="body1"
+          sx={{
+            textAlign: "center",
+            color: theme.palette.text.secondary,
+            mb: 8,
+            maxWidth: "600px",
+            mx: "auto",
+          }}
         >
-          <Typography
-            variant="body1"
-            sx={{
-              textAlign: "center",
-              maxWidth: "600px",
-              mx: "auto",
-              mb: 4,
-              color: (theme: Theme) => theme.palette.text.secondary,
-            }}
-          >
-            I'm always open to discussing new projects, creative ideas, or
-            opportunities to be part of your visions. Feel free to reach out!
-          </Typography>
-        </motion.div>
+          I'm always open to discussing new projects, creative ideas, or
+          opportunities. Feel free to reach out!
+        </Typography>
 
-        <Stack
-          direction="row"
-          spacing={2}
-          justifyContent="center"
-          sx={{ mb: 6 }}
-        >
-          <IconButton
-            href="https://github.com/rohit-bharmal"
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={{
-              color: (theme: Theme) => theme.palette.text.secondary,
-              "&:hover": {
-                color: (theme: Theme) => theme.palette.primary.main,
-              },
-            }}
-          >
-            <GitHub />
-          </IconButton>
-          <IconButton
-            href="https://www.linkedin.com/in/rohitbharmal/"
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={{
-              color: (theme: Theme) => theme.palette.text.secondary,
-              "&:hover": {
-                color: (theme: Theme) => theme.palette.primary.main,
-              },
-            }}
-          >
-            <LinkedIn />
-          </IconButton>
-          <IconButton
-            href="mailto:rohitbharmal123@gmail.com"
-            sx={{
-              color: (theme: Theme) => theme.palette.text.secondary,
-              "&:hover": {
-                color: (theme: Theme) => theme.palette.primary.main,
-              },
-            }}
-          >
-            <Email />
-          </IconButton>
-        </Stack>
+        <Grid container spacing={6}>
+          <Grid item xs={12} md={6}>
+            <Typography
+              variant="h4"
+              sx={{
+                mb: 4,
+                fontWeight: 600,
+                color: theme.palette.text.primary,
+              }}
+            >
+              Let's Connect
+            </Typography>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <Paper
-            elevation={0}
-            sx={{
-              p: 4,
-              background: (theme: Theme) => theme.palette.background.paper,
-              border: "1px solid",
-              borderColor: "rgba(255, 255, 255, 0.1)",
-              maxWidth: "600px",
-              mx: "auto",
-            }}
-          >
-            {submitted && (
-              <Alert
-                severity="success"
-                sx={{ mb: 3 }}
-                onClose={() => setSubmitted(false)}
+            <Stack spacing={3}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <Email sx={{ color: theme.palette.primary.main }} />
+                <Box>
+                  <Typography variant="h6" sx={{ fontWeight: 500 }}>
+                    Email
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: theme.palette.text.secondary }}
+                  >
+                    rohitbharmal123@gmail.com
+                  </Typography>
+                </Box>
+              </Box>
+
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <LocationOn sx={{ color: theme.palette.primary.main }} />
+                <Box>
+                  <Typography variant="h6" sx={{ fontWeight: 500 }}>
+                    Location
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: theme.palette.text.secondary }}
+                  >
+                    Pune
+                  </Typography>
+                </Box>
+              </Box>
+            </Stack>
+
+            <Stack direction="row" spacing={2} sx={{ mt: 4 }}>
+              <IconButton
+                href="https://github.com/rohit-bharmal"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  border: `1px solid ${theme.palette.divider}`,
+                  "&:hover": {
+                    borderColor: theme.palette.primary.main,
+                    color: theme.palette.primary.main,
+                  },
+                }}
               >
-                Message sent successfully! I'll get back to you soon.
-              </Alert>
-            )}
-
-            {error && (
-              <Alert
-                severity="error"
-                sx={{ mb: 3 }}
-                onClose={() => setError(null)}
+                <GitHub />
+              </IconButton>
+              <IconButton
+                href="https://www.linkedin.com/in/rohitbharmal/"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  border: `1px solid ${theme.palette.divider}`,
+                  "&:hover": {
+                    borderColor: theme.palette.primary.main,
+                    color: theme.palette.primary.main,
+                  },
+                }}
               >
-                {error}
-              </Alert>
-            )}
+                <LinkedIn />
+              </IconButton>
+              <IconButton
+                href="mailto:rohitbharmal123@gmail.com"
+                sx={{
+                  border: `1px solid ${theme.palette.divider}`,
+                  "&:hover": {
+                    borderColor: theme.palette.primary.main,
+                    color: theme.palette.primary.main,
+                  },
+                }}
+              >
+                <Email />
+              </IconButton>
+            </Stack>
+          </Grid>
 
-            <form onSubmit={handleSubmit}>
-              <Stack spacing={3}>
-                <TextField
-                  label="Your Name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  variant="outlined"
-                  sx={{
-                    "& .MuiOutlinedInput-root": {
-                      "& fieldset": {
-                        borderColor: "rgba(255, 255, 255, 0.1)",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: (theme: Theme) =>
-                          theme.palette.primary.main,
-                      },
-                    },
-                  }}
-                />
-                <TextField
-                  label="Email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  variant="outlined"
-                  sx={{
-                    "& .MuiOutlinedInput-root": {
-                      "& fieldset": {
-                        borderColor: "rgba(255, 255, 255, 0.1)",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: (theme: Theme) =>
-                          theme.palette.primary.main,
-                      },
-                    },
-                  }}
-                />
-                <TextField
-                  label="Message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  multiline
-                  rows={4}
-                  fullWidth
-                  required
-                  variant="outlined"
-                  sx={{
-                    "& .MuiOutlinedInput-root": {
-                      "& fieldset": {
-                        borderColor: "rgba(255, 255, 255, 0.1)",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: (theme: Theme) =>
-                          theme.palette.primary.main,
-                      },
-                    },
-                  }}
-                />
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  endIcon={<Send />}
-                  sx={{
-                    py: 1.5,
-                  }}
+          <Grid item xs={12} md={6}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 4,
+                border: `1px solid ${theme.palette.divider}`,
+              }}
+            >
+              {submitted && (
+                <Alert
+                  severity="success"
+                  sx={{ mb: 3 }}
+                  onClose={() => setSubmitted(false)}
                 >
-                  Send Message
-                </Button>
-              </Stack>
-            </form>
-          </Paper>
-        </motion.div>
-      </Box>
-    </Container>
+                  Message sent successfully! I'll get back to you soon.
+                </Alert>
+              )}
+
+              {error && (
+                <Alert
+                  severity="error"
+                  sx={{ mb: 3 }}
+                  onClose={() => setError(null)}
+                >
+                  {error}
+                </Alert>
+              )}
+
+              <form onSubmit={handleSubmit}>
+                <Stack spacing={3}>
+                  <TextField
+                    label="Your Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    fullWidth
+                    required
+                    variant="outlined"
+                  />
+                  <TextField
+                    label="Email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    fullWidth
+                    required
+                    variant="outlined"
+                  />
+                  <TextField
+                    label="Message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    multiline
+                    rows={4}
+                    fullWidth
+                    required
+                    variant="outlined"
+                  />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    endIcon={<Send />}
+                    sx={{
+                      py: 1.5,
+                    }}
+                  >
+                    Send Message
+                  </Button>
+                </Stack>
+              </form>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 

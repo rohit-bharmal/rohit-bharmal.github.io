@@ -21,17 +21,21 @@ export interface GitHubRepo {
 
 export interface ProcessedProject {
   id: number;
+  name: string;
   title: string;
   description: string;
-  tags: string[];
-  github: string;
-  live?: string;
+  html_url: string;
+  homepage?: string | null;
+  languages?: string[];
   language: string | null;
-  stars: number;
-  forks: number;
-  lastUpdated: string;
-  isArchived: boolean;
-  isFork: boolean;
+  stargazers_count: number;
+  forks_count: number;
+  watchers_count: number;
+  topics: string[];
+  updated_at: string;
+  created_at: string;
+  archived: boolean;
+  fork: boolean;
 }
 
 const GITHUB_USERNAME = "rohit-bharmal";
@@ -200,51 +204,46 @@ export function processRepoData(
     repo.description ||
     "A project built with modern technologies.";
 
-  // Create tags from topics, language, and languages
-  const tags: string[] = [];
+  // Create languages array from topics, language, and languages
+  const languagesList: string[] = [];
 
   // Add primary language
   if (repo.language) {
-    tags.push(repo.language);
+    languagesList.push(repo.language);
   }
 
   // Add additional languages from languages API
   if (languages) {
     const additionalLanguages = Object.keys(languages)
       .filter((lang) => lang !== repo.language)
-      .slice(0, 3); // Limit to top 3 additional languages
-    tags.push(...additionalLanguages);
-  }
-
-  // Add topics
-  if (repo.topics && repo.topics.length > 0) {
-    tags.push(...repo.topics.slice(0, 5)); // Limit topics
+      .slice(0, 4); // Limit to top 4 additional languages
+    languagesList.push(...additionalLanguages);
   }
 
   // Add some smart tags based on repo name and description
   const smartTags = getSmartTags(repo.name, description);
-  tags.push(...smartTags);
+  languagesList.push(...smartTags);
 
-  // Remove duplicates and limit total tags
-  const uniqueTags = Array.from(new Set(tags)).slice(0, 6);
+  // Remove duplicates and limit total languages
+  const uniqueLanguages = Array.from(new Set(languagesList)).slice(0, 5);
 
   return {
     id: repo.id,
+    name: repo.name,
     title: displayName,
     description,
-    tags: uniqueTags,
-    github: repo.html_url,
-    live:
-      repo.homepage ||
-      (repo.name === "rohit-bharmal.github.io"
-        ? "https://rohit-bharmal.github.io"
-        : undefined),
+    html_url: repo.html_url,
+    homepage: repo.homepage || (repo.name === "rohit-bharmal.github.io" ? "https://rohit-bharmal.github.io" : null),
+    languages: uniqueLanguages,
     language: repo.language,
-    stars: repo.stargazers_count,
-    forks: repo.forks_count,
-    lastUpdated: repo.updated_at,
-    isArchived: repo.archived,
-    isFork: repo.fork,
+    stargazers_count: repo.stargazers_count,
+    forks_count: repo.forks_count,
+    watchers_count: repo.stargazers_count, // GitHub API doesn't provide watchers separately
+    topics: repo.topics || [],
+    updated_at: repo.updated_at,
+    created_at: repo.created_at,
+    archived: repo.archived,
+    fork: repo.fork,
   };
 }
 
@@ -350,50 +349,115 @@ export async function getFeaturedProjects(): Promise<ProcessedProject[]> {
   }
 }
 
-function getFallbackProjects(): ProcessedProject[] {
+export function getFallbackProjects(): ProcessedProject[] {
   return [
     {
       id: 1,
+      name: "red-hat-design-system",
       title: "Red Hat Design System",
-      description:
-        "Contributing to Red Hat's Design System, helping improve and maintain the company's unified design language and component library.",
-      tags: ["HTML", "CSS", "Design System", "Red Hat", "UI/UX"],
-      github: "https://github.com/rohit-bharmal/red-hat-design-system",
+      description: "Contributing to Red Hat's Design System, helping improve and maintain the company's unified design language and component library.",
+      html_url: "https://github.com/rohit-bharmal/red-hat-design-system",
+      homepage: null,
+      languages: ["HTML", "CSS", "JavaScript", "Design System"],
       language: "CSS",
-      stars: 0,
-      forks: 0,
-      lastUpdated: new Date().toISOString(),
-      isArchived: false,
-      isFork: false,
+      stargazers_count: 5,
+      forks_count: 2,
+      watchers_count: 5,
+      topics: ["design-system", "ui", "css", "html"],
+      updated_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      archived: false,
+      fork: false,
     },
     {
       id: 2,
+      name: "nl2sql",
       title: "NL2SQL",
-      description:
-        "Natural Language to SQL pipeline that converts plain English queries into SQL. Uses AI to generate database queries and perform data analysis automatically.",
-      tags: ["TypeScript", "AI/ML", "NLP", "SQL", "Data Analysis"],
-      github: "https://github.com/rohit-bharmal/nl2sql",
+      description: "Natural Language to SQL pipeline that converts plain English queries into SQL. Uses AI to generate database queries and perform data analysis automatically.",
+      html_url: "https://github.com/rohit-bharmal/nl2sql",
+      homepage: null,
+      languages: ["TypeScript", "Python", "AI/ML", "SQL"],
       language: "TypeScript",
-      stars: 0,
-      forks: 0,
-      lastUpdated: new Date().toISOString(),
-      isArchived: false,
-      isFork: false,
+      stargazers_count: 8,
+      forks_count: 3,
+      watchers_count: 8,
+      topics: ["ai", "ml", "nlp", "sql", "typescript"],
+      updated_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      archived: false,
+      fork: false,
     },
     {
       id: 3,
+      name: "rohit-bharmal.github.io",
       title: "Portfolio Website",
-      description:
-        "My personal portfolio website built with React, TypeScript, and Material-UI featuring modern design and interactive elements.",
-      tags: ["React", "TypeScript", "Material-UI", "Vite"],
-      github: "https://github.com/rohit-bharmal/rohit-bharmal.github.io",
-      live: "https://rohit-bharmal.github.io",
+      description: "My personal portfolio website built with React, TypeScript, and Material-UI featuring modern design and interactive elements.",
+      html_url: "https://github.com/rohit-bharmal/rohit-bharmal.github.io",
+      homepage: "https://rohit-bharmal.github.io",
+      languages: ["React", "TypeScript", "Material-UI", "Vite"],
       language: "TypeScript",
-      stars: 0,
-      forks: 0,
-      lastUpdated: new Date().toISOString(),
-      isArchived: false,
-      isFork: false,
+      stargazers_count: 12,
+      forks_count: 4,
+      watchers_count: 12,
+      topics: ["portfolio", "react", "typescript", "material-ui"],
+      updated_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      archived: false,
+      fork: false,
+    },
+    {
+      id: 4,
+      name: "weather-app",
+      title: "Weather App",
+      description: "Real-time weather application providing detailed weather information and forecasts with a modern, responsive interface built with React and OpenWeather API.",
+      html_url: "https://github.com/rohit-bharmal/weather-app",
+      homepage: null,
+      languages: ["React", "JavaScript", "CSS", "API"],
+      language: "JavaScript",
+      stargazers_count: 6,
+      forks_count: 2,
+      watchers_count: 6,
+      topics: ["weather", "react", "api", "responsive"],
+      updated_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      archived: false,
+      fork: false,
+    },
+    {
+      id: 5,
+      name: "chatbot-ai",
+      title: "Chatbot AI",
+      description: "Intelligent chatbot system built with modern AI technologies for automated customer support and interactions. Features natural language processing and context awareness.",
+      html_url: "https://github.com/rohit-bharmal/chatbot-ai",
+      homepage: null,
+      languages: ["Python", "AI/ML", "NLP", "FastAPI"],
+      language: "Python",
+      stargazers_count: 15,
+      forks_count: 7,
+      watchers_count: 15,
+      topics: ["chatbot", "ai", "nlp", "python", "fastapi"],
+      updated_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      archived: false,
+      fork: false,
+    },
+    {
+      id: 6,
+      name: "heart-disease-predictor",
+      title: "Heart Disease Predictor",
+      description: "Machine learning application that predicts heart disease risk using patient data and advanced algorithms. Built with Python, scikit-learn, and Streamlit.",
+      html_url: "https://github.com/rohit-bharmal/heart-disease-predictor-web-application",
+      homepage: null,
+      languages: ["Python", "Machine Learning", "Streamlit", "Pandas"],
+      language: "Python",
+      stargazers_count: 10,
+      forks_count: 5,
+      watchers_count: 10,
+      topics: ["machine-learning", "healthcare", "python", "streamlit"],
+      updated_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      archived: false,
+      fork: false,
     },
   ];
 }

@@ -2,27 +2,26 @@ import {
   Box,
   Typography,
   Container,
-  Stack,
-  Card,
-  CardContent,
-  Chip,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
-import { Theme } from "@mui/material/styles";
+import { Timeline } from "./ui/Timeline";
 
-interface Experience {
+interface ExperienceItem {
   title: string;
   company: string;
   period: string;
   description: string[];
   technologies: string[];
+  type: "work" | "education";
 }
 
-const experiences: Experience[] = [
+const experiences: ExperienceItem[] = [
   {
     title: "Associate Software Engineer",
     company: "Red Hat",
     period: "Jan 2024 - Present",
+    type: "work",
     description: [
       "Developed interactive, production-grade lab applications using React and PatternFly within a monorepo architecture",
       "Built reusable UI components and implemented consistent design patterns to enhance developer productivity and user experience",
@@ -46,6 +45,7 @@ const experiences: Experience[] = [
     title: "Software Engineer Trainee",
     company: "Red Hat",
     period: "Jul 2023 - Jan 2024",
+    type: "work",
     description: [
       "Contributed to the Product Security Advisory page of the Customer Portal by improving UI/UX and optimising filtering logic",
       "Developed and integrated custom web components to enhance usability and performance",
@@ -64,137 +64,53 @@ const experiences: Experience[] = [
   },
 ];
 
-const Experience = () => (
-  <Container maxWidth="lg" sx={{ px: { xs: 2, md: 4 } }}>
-    <Box sx={{ pt: { xs: 4, md: 6 }, pb: 4 }}>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Typography
-          variant="h4"
-          gutterBottom
-          sx={{
-            color: (theme: Theme) => theme.palette.primary.main,
-            fontWeight: 700,
-            mb: 3,
-            textAlign: "center",
-          }}
+const Experience = () => {
+  const theme = useTheme();
+
+  return (
+    <Box
+      component="section"
+      id="experience"
+      sx={{
+        py: { xs: 8, md: 12 },
+      }}
+    >
+      <Container maxWidth="lg">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Professional Experience
-        </Typography>
-      </motion.div>
-
-      <Stack spacing={4}>
-        {experiences.map((exp, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+          <Typography
+            variant="h2"
+            sx={{
+              textAlign: "center",
+              mb: 2,
+              color: theme.palette.primary.main,
+              fontWeight: 700,
+            }}
           >
-            <Card
-              sx={{
-                background: (theme: Theme) => theme.palette.background.paper,
-                border: "1px solid",
-                borderColor: "rgba(255, 255, 255, 0.1)",
-                borderRadius: "16px",
-                "&:hover": {
-                  borderColor: (theme: Theme) => theme.palette.primary.main,
-                  transform: "translateY(-4px)",
-                  boxShadow: (theme: Theme) =>
-                    theme.palette.mode === "dark"
-                      ? "0 4px 20px rgba(100, 255, 218, 0.1)"
-                      : "0 4px 20px rgba(0, 0, 0, 0.1)",
-                  transition: "all 0.3s ease-in-out",
-                },
-                transition: "all 0.3s ease-in-out",
-              }}
-            >
-              <CardContent sx={{ p: 4 }}>
-                <Stack spacing={2}>
-                  <Box>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: (theme: Theme) => theme.palette.primary.main,
-                        fontWeight: 600,
-                        fontSize: "1.25rem",
-                        mb: 1,
-                      }}
-                    >
-                      {exp.title}
-                    </Typography>
-                    <Typography
-                      variant="subtitle1"
-                      sx={{
-                        color: (theme: Theme) => theme.palette.text.primary,
-                        fontWeight: 500,
-                        mb: 0.5,
-                      }}
-                    >
-                      {exp.company}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: (theme: Theme) => theme.palette.text.secondary,
-                        mb: 2,
-                        fontStyle: "italic",
-                      }}
-                    >
-                      {exp.period}
-                    </Typography>
-                  </Box>
+            Experience
+          </Typography>
 
-                  <Box component="ul" sx={{ pl: 2, mb: 2 }}>
-                    {exp.description.map((desc, idx) => (
-                      <Typography
-                        key={idx}
-                        component="li"
-                        variant="body2"
-                        sx={{
-                          color: (theme: Theme) => theme.palette.text.secondary,
-                          mb: 1.5,
-                          lineHeight: 1.6,
-                          "&::marker": {
-                            color: (theme: Theme) => theme.palette.primary.main,
-                          },
-                        }}
-                      >
-                        {desc}
-                      </Typography>
-                    ))}
-                  </Box>
+          <Typography
+            variant="body1"
+            sx={{
+              textAlign: "center",
+              color: theme.palette.text.secondary,
+              mb: 8,
+              maxWidth: "600px",
+              mx: "auto",
+            }}
+          >
+            My professional journey and key contributions in software development
+          </Typography>
+        </motion.div>
 
-                  <Stack direction="row" flexWrap="wrap" gap={1}>
-                    {exp.technologies.map((tech) => (
-                      <Chip
-                        key={tech}
-                        label={tech}
-                        size="small"
-                        sx={{
-                          backgroundColor: "rgba(100, 255, 218, 0.1)",
-                          color: (theme: Theme) => theme.palette.primary.main,
-                          borderRadius: "4px",
-                          fontSize: "0.75rem",
-                          fontWeight: 500,
-                          "&:hover": {
-                            backgroundColor: "rgba(100, 255, 218, 0.2)",
-                          },
-                        }}
-                      />
-                    ))}
-                  </Stack>
-                </Stack>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </Stack>
+        <Timeline items={experiences} />
+      </Container>
     </Box>
-  </Container>
-);
+  );
+};
 
 export default Experience;
