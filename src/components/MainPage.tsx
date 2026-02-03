@@ -7,6 +7,7 @@ import { BackgroundBeams } from "./ui/BackgroundBeams";
 import Home from "./Home";
 import About from "./About";
 import Experience from "./Experience";
+import { ProfessionalProjects } from "./ProfessionalProjects";
 import Projects from "./Projects";
 import Contact from "./Contact";
 
@@ -58,7 +59,12 @@ const MainPage = () => {
         <Experience />
       </section>
 
-      {/* Projects Section */}
+      {/* Professional Projects Section */}
+      <section id="professional-projects" style={{ width: "100%", position: "relative", zIndex: 1 }}>
+        <ProfessionalProjects />
+      </section>
+
+      {/* Personal Projects Section */}
       <section id="projects" style={{ width: "100%", position: "relative", zIndex: 1 }}>
         <Projects />
       </section>

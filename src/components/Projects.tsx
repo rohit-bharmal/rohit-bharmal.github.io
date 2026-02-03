@@ -1,12 +1,11 @@
-import {
-  Box,
-  Typography,
-  Container,
-  useTheme,
-} from "@mui/material";
+import { Box, Typography, Container, useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { getFeaturedProjects, getFallbackProjects, ProcessedProject } from "../lib/github";
+import {
+  getFeaturedProjects,
+  getFallbackProjects,
+  ProcessedProject,
+} from "../lib/github";
 import { ProjectGrid } from "./ui/ProjectGrid";
 
 const Projects = () => {
@@ -72,7 +71,8 @@ const Projects = () => {
               mx: "auto",
             }}
           >
-            A collection of my recent work and open-source contributions
+            Open-source contributions, side projects, and GitHub repositories
+            showcasing various technologies
           </Typography>
         </motion.div>
 
@@ -86,7 +86,7 @@ const Projects = () => {
               variant="body1"
               sx={{ textAlign: "center", color: theme.palette.text.secondary }}
             >
-              Loading projects...
+              Loading projects from GitHub...
             </Typography>
           </motion.div>
         )}
@@ -98,10 +98,15 @@ const Projects = () => {
             transition={{ duration: 0.5 }}
           >
             <Typography
-              variant="body1"
-              sx={{ textAlign: "center", color: theme.palette.error.main }}
+              variant="body2"
+              sx={{
+                textAlign: "center",
+                color: theme.palette.text.secondary,
+                mb: 4,
+                fontStyle: "italic",
+              }}
             >
-              {error}
+              GitHub API rate limited - showing sample projects
             </Typography>
           </motion.div>
         )}

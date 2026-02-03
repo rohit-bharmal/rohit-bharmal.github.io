@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Typography,
@@ -24,7 +23,7 @@ const Home = () => {
   const theme = useTheme();
 
   const scrollToProjects = () => {
-    const element = document.getElementById("projects");
+    const element = document.getElementById("professional-projects");
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -82,9 +81,10 @@ const Home = () => {
                 <TypewriterEffect
                   words={[
                     "Software Engineer",
+                    "Red Hat Certified Specialist",
                     "Frontend Developer",
                     "Open Source Contributor",
-                    "Problem Solver",
+                    "Container Specialist",
                   ]}
                 />
               </Box>
@@ -104,11 +104,20 @@ const Home = () => {
                   lineHeight: 1.7,
                 }}
               >
-                I'm an Associate Software Engineer at Red Hat, passionate about
-                building scalable web applications and contributing to open-source
-                projects. I specialize in frontend development with modern
-                technologies and love solving complex problems through clean,
-                efficient code.
+                I'm an Associate Software Engineer at Red Hat and a{" "}
+                <Box
+                  component="span"
+                  sx={{
+                    color: theme.palette.primary.main,
+                    fontWeight: 600,
+                  }}
+                >
+                  Red Hat Certified Specialist in Containers
+                </Box>
+                . I'm passionate about building scalable web applications and
+                contributing to open-source projects. I specialize in frontend
+                development with modern technologies and love solving complex
+                problems through clean, efficient code.
               </Typography>
             </motion.div>
 
@@ -122,7 +131,10 @@ const Home = () => {
                 spacing={2}
                 sx={{ mb: 6 }}
               >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Button
                     variant="contained"
                     size="large"
@@ -136,7 +148,10 @@ const Home = () => {
                     View My Work
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Button
                     variant="outlined"
                     size="large"
@@ -151,7 +166,10 @@ const Home = () => {
                     Resume
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Button
                     variant="outlined"
                     size="large"
@@ -175,8 +193,14 @@ const Home = () => {
             >
               <Stack direction="row" spacing={2}>
                 {[
-                  { icon: <GitHub />, href: "https://github.com/rohit-bharmal" },
-                  { icon: <LinkedIn />, href: "https://www.linkedin.com/in/rohitbharmal/" },
+                  {
+                    icon: <GitHub />,
+                    href: "https://github.com/rohit-bharmal",
+                  },
+                  {
+                    icon: <LinkedIn />,
+                    href: "https://www.linkedin.com/in/rohitbharmal/",
+                  },
                   { icon: <Email />, href: "mailto:rohitbharmal01@gmail.com" },
                 ].map((social, index) => (
                   <motion.div
@@ -247,7 +271,7 @@ const Home = () => {
                     },
                   }}
                 />
-                
+
                 <Box
                   component="img"
                   src={profileImg}
